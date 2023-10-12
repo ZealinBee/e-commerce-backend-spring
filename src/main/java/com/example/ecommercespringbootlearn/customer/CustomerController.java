@@ -14,13 +14,23 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<Customer> getAllCustomers() {
+    public List<GetCustomerDTO> getAllCustomers() {
         return customerService.getAll();
     }
 
     @PostMapping
-    public Customer createCustomer(@RequestBody Customer customer) {
+    public GetCustomerDTO createCustomer(@RequestBody CreateCustomerDTO customer) {
         return customerService.createOne(customer);
+    }
+
+    @PatchMapping(path = "{customerId}")
+    public GetCustomerDTO updateCustomer(@PathVariable("customerId") int customerId, @RequestBody UpdateCustomerDTO customer) {
+        return customerService.updateOne(customerId, customer);
+    }
+
+    @DeleteMapping(path = "{customerId}")
+    public void deleteCustomer(@PathVariable("customerId")int customerId) {
+        customerService.deleteOne(customerId);
     }
 
 }

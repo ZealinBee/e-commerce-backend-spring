@@ -6,6 +6,8 @@ import java.util.List;
 
 @Service
 public interface ICustomerService {
-    List<Customer> getAll();
-    Customer createOne(Customer customer);
+    List<GetCustomerDTO> getAll();
+    GetCustomerDTO createOne(CreateCustomerDTO customer);
+    GetCustomerDTO updateOne(int id, UpdateCustomerDTO customer);
+    void deleteOne(int id);
 }
