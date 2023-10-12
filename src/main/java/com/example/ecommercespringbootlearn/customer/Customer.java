@@ -1,17 +1,31 @@
-package com.example.ecommercespringbootlearn;
+package com.example.ecommercespringbootlearn.customer;
 
-public class User {
-    private int userId;
+import jakarta.persistence.*;
+
+@Entity
+@Table
+public class Customer {
+    @Id
+    @SequenceGenerator(
+            name = "customer_sequence",
+            sequenceName = "customer_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_sequence"
+    )
+    private int customerId;
     private String email;
     private String password;
     private String name;
     private String role;
     private String avatar;
 
-    public User() {
+    public Customer() {
     }
 
-    public User(String email, String password, String name, String role, String avatar) {
+    public Customer(String email, String password, String name, String role, String avatar) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -19,8 +33,8 @@ public class User {
         this.avatar = avatar;
     }
 
-    public User(int userId, String email, String password, String name, String role, String avatar) {
-        this.userId = userId;
+    public Customer(int customerId, String email, String password, String name, String role, String avatar) {
+        this.customerId = customerId;
         this.email = email;
         this.password = password;
         this.name = name;
@@ -28,12 +42,12 @@ public class User {
         this.avatar = avatar;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getEmail() {
