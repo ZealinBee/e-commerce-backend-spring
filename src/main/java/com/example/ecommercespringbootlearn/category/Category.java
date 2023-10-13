@@ -62,4 +62,8 @@ public class Category {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public List<Product> getProducts() {
+        return products;
+    }
 }

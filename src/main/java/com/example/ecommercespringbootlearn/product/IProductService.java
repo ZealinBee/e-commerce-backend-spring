@@ -7,5 +7,5 @@ import java.util.concurrent.CompletableFuture;
 @Service
 public interface IProductService {
     List<Product> getAll();
-    Product createOne(Product product);
+    Product createOne(CreateProductDTO dto);
 }
