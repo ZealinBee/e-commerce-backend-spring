@@ -4,7 +4,7 @@ public record CustomerDTO() {
 
 }
 
-record GetCustomerDTO(int customerId, String email, String name, String role, String avatar) {
+record GetCustomerDTO(int customerId, String email, String name, Role role, String avatar) {
 }
 
 record UpdateCustomerDTO(String email, String name, String avatar){
@@ -23,7 +23,7 @@ record UpdateCustomerDTO(String email, String name, String avatar){
 
 }
 
-record CreateCustomerDTO(String email, String password, String name, String role, String avatar){
+record CreateCustomerDTO(String email, String password, String name, Role role, String avatar){
     @Override
     public String email() {
         return email;
@@ -40,7 +40,7 @@ record CreateCustomerDTO(String email, String password, String name, String role
     }
 
     @Override
-    public String role() {
+    public Role role() {
         return role;
     }
 

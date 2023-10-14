@@ -1,10 +1,22 @@
 package com.example.ecommercespringbootlearn.customer;
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 @Table
-public class Customer {
+public class Customer implements UserDetails {
     @Id
     @SequenceGenerator(
             name = "customer_sequence",
@@ -19,22 +31,46 @@ public class Customer {
     private String email;
     private String password;
     private String name;
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     private String avatar;
 
-    public Customer() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
-    public Customer(String email, String password, String name, String role, String avatar) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.role = role;
-        this.avatar = avatar;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    public Customer(int customerId, String email, String password, String name, String role, String avatar) {
-        this.customerId = customerId;
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public Customer(String email, String password, String name, Role role, String avatar) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -46,44 +82,40 @@ public class Customer {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getRole() {
+    public Role getRole() {
         return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public String getAvatar() {
         return avatar;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public void setAvatar(String avatar) {

@@ -18,13 +18,13 @@ public class CustomerMapper {
         );
     }
 
-    Customer createDTOtoCustomer(CreateCustomerDTO customer) {
+    Customer createDTOtoCustomer(CreateCustomerDTO dto) {
         return new Customer(
-                customer.email(),
-                customer.password(),
-                customer.name(),
-                customer.role(),
-                customer.avatar()
+                dto.email(),
+                dto.password(),
+                dto.name(),
+                dto.role(),
+                dto.avatar()
         );
     }
 

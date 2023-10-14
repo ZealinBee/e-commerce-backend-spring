@@ -1,6 +1,7 @@
 package com.example.ecommercespringbootlearn.category;
 
 import com.example.ecommercespringbootlearn.product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class Category {
     private String name;
     private String image;
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Product> products;
 
     public Category() {

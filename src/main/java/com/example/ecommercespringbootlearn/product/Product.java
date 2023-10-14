@@ -1,8 +1,17 @@
 package com.example.ecommercespringbootlearn.product;
 
 import com.example.ecommercespringbootlearn.category.Category;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table
 public class Product {
@@ -22,73 +31,8 @@ public class Product {
     private String description;
     private String image;
     @ManyToOne()
+    @JsonIgnore
     private Category category;
 
-    public Product() {
-    }
 
-    public Product(String title, int price, String description, String image, Category category) {
-        this.title = title;
-        this.price = price;
-        this.description = description;
-        this.image = image;
-        this.category = category;
-    }
-
-    public Product(int productId, String title, int price, String description, String image, Category category) {
-        this.productId = productId;
-        this.title = title;
-        this.price = price;
-        this.description = description;
-        this.image = image;
-        this.category = category;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }
