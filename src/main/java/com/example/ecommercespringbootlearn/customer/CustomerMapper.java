@@ -23,7 +23,7 @@ public class CustomerMapper {
                 dto.email(),
                 dto.password(),
                 dto.name(),
-                dto.role(),
+                Role.USER,
                 dto.avatar()
         );
     }

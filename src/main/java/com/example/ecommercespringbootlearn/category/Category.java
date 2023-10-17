@@ -3,11 +3,17 @@ package com.example.ecommercespringbootlearn.category;
 import com.example.ecommercespringbootlearn.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
+@Getter
 @Entity
 @Table
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
     @Id
     @SequenceGenerator(
@@ -26,46 +32,21 @@ public class Category {
     @JsonIgnore
     private List<Product> products;
 
-    public Category() {
-    }
-
     public Category(String name, String image) {
         this.name = name;
         this.image = image;
-    }
-
-    public Category(int categoryId, String name, String image, List<Product> products) {
-        this.categoryId = categoryId;
-        this.name = name;
-        this.image = image;
-        this.products = products;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
     }
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImage() {
-        return image;
     }
 
     public void setImage(String image) {
         this.image = image;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
 }

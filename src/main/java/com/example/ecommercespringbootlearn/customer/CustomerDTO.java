@@ -23,7 +23,7 @@ record UpdateCustomerDTO(String email, String name, String avatar){
 
 }
 
-record CreateCustomerDTO(String email, String password, String name, Role role, String avatar){
+record CreateCustomerDTO(String email, String password, String name, String avatar){
     @Override
     public String email() {
         return email;
@@ -37,11 +37,6 @@ record CreateCustomerDTO(String email, String password, String name, Role role, 
     @Override
     public String name() {
         return name;
-    }
-
-    @Override
-    public Role role() {
-        return role;
     }
 
     @Override

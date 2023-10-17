@@ -1,6 +1,7 @@
 package com.example.ecommercespringbootlearn.category;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 public class CategoryService implements ICategoryService{
     private final ICategoryRepository categoryRepository;
     private final CategoryMapper mapper;
-
+    @Autowired
     public CategoryService(ICategoryRepository categoryRepository, CategoryMapper categoryMapper) {
         this.categoryRepository = categoryRepository;
         this.mapper = categoryMapper;
